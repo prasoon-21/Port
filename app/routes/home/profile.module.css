@@ -36,14 +36,16 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 50%;
+  grid-template-columns: 1fr 45%;
   grid-column-gap: var(--space2XL);
   max-width: var(--maxWidthL);
   width: 100%;
+  align-items: center;
 
   @media (--mediaTablet) {
     max-width: 600px;
     grid-template-columns: 100%;
+    align-items: flex-start;
   }
 }
 
@@ -78,15 +80,15 @@
 }
 
 .tag {
-  margin-top: 220px;
-  margin-bottom: 40px;
+  margin-top: 0;
+  margin-bottom: var(--spaceL);
   display: grid;
   grid-template-columns: var(--space4XL) 1fr;
   gap: 12px;
   align-items: center;
 
   @media (--mediaTablet) {
-    margin-top: 30px;
+    margin-top: 0;
   }
 }
 
@@ -114,6 +116,10 @@
 .image {
   position: relative;
   width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid color-mix(in lab, var(--accent) 25%, transparent);
 }
 
 .svg {
@@ -141,3 +147,60 @@
     opacity: 1;
   }
 }
+
+.buttonRow {
+  display: flex;
+  gap: var(--spaceM);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: var(--spaceL);
+}
+
+.imageOverlayAction {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--zIndex4);
+  width: calc(100% - 48px);
+  display: flex;
+  justify-content: center;
+}
+
+.overlayButton {
+  width: 100%;
+  justify-content: center;
+  background: transparent !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 14px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  transition: transform var(--durationM) ease, background var(--durationM) ease, border-color var(--durationM) ease, box-shadow var(--durationM) ease, color var(--durationM) ease;
+
+  &::after {
+    display: none !important;
+  }
+
+  & svg {
+    fill: #ffffff !important;
+    transition: transform var(--durationM) ease, fill var(--durationM) ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: color-mix(in lab, var(--accent) 22%, transparent) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 22px color-mix(in lab, var(--accent) 30%, transparent) !important;
+
+    & svg {
+      fill: var(--accent) !important;
+      transform: translateX(4px);
+    }
+  }
+}
+

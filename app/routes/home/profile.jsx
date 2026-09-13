@@ -18,19 +18,27 @@ import styles from './profile.module.css';
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
     <Heading className={styles.title} data-visible={visible} level={3} id={titleId}>
-      <DecoderText text="Hi there" start={visible} delay={500} />
+      <DecoderText text="About Me" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I’m Hamish, currently I live in Sydney working as a senior product designer at{' '}
-      <Link href="https://www.qwilr.com">Qwilr</Link>. My projects include UX design, UI
-      animations, and icon illustration. Being comfortable with code allows me to rapidly
-      prototype and validate experiences. If you’re interested in the tools and software I
-      use check out my <Link href="/uses">uses page</Link>.
+      Hi, I’m <strong>Prasoon Kumar</strong>, a Computer Science student pursuing my
+      B.Tech in Artificial Intelligence & Data Science at Global Institute of Technology,
+      maintaining a consistent <strong>9.2 GPA</strong>. My core passion lies in crafting
+      delightful frontend experiences, interactive Three.js visuals, and building AI agent
+      architectures that bridge user interfaces with intelligent systems.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      In my spare time I like to practice Brazilian Jiu Jitsu, play video games, and{' '}
-      <Link href="/projects/volkihar-knight">make mods</Link>. I’m always down for hearing
-      about new projects, so feel free to drop me a line.
+      Outside of coding, I’m a competitive Kabaddi player who competed at the district level
+      for Saran, Bihar, and led collegiate squads to the RTU trials. I actively solve data
+      structure problems on{' '}
+      <Link href="https://leetcode.com/u/prasoon_mishra_21/" target="_blank">
+        LeetCode
+      </Link>
+      , write technical writeups on{' '}
+      <Link href="https://hashnode.com/@pkcmishra" target="_blank">
+        Hashnode
+      </Link>
+      , and collaborate with our coding clubs <em>Code-Up</em> and <em>Hack-the-Mint</em>.
     </Text>
   </Fragment>
 );
@@ -55,15 +63,26 @@ export const Profile = ({ id, visible, sectionRef }) => {
           <div className={styles.content} ref={nodeRef}>
             <div className={styles.column}>
               <ProfileText visible={visible} titleId={titleId} />
-              <Button
-                secondary
-                className={styles.button}
-                data-visible={visible}
-                href="/contact"
-                icon="send"
-              >
-                Send me a message
-              </Button>
+              <div className={styles.buttonRow}>
+                <Button
+                  className={styles.button}
+                  data-visible={visible}
+                  href="/contact"
+                  icon="send"
+                >
+                  Contact Me
+                </Button>
+                <Button
+                  secondary
+                  className={styles.button}
+                  data-visible={visible}
+                  href="/resume.pdf"
+                  download="Prasoon_Kumar_Resume.pdf"
+                  icon="arrow-right"
+                >
+                  Download CV
+                </Button>
+              </div>
             </div>
             <div className={styles.column}>
               <div className={styles.tag} aria-hidden>
@@ -86,11 +105,20 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
+                  alt="Prasoon Kumar"
                 />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />
                 </svg>
+                <div className={styles.imageOverlayAction}>
+                  <Button
+                    href="/about"
+                    iconEnd="arrow-right"
+                    className={styles.overlayButton}
+                  >
+                    Read In-Depth Story
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
