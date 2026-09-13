@@ -1,62 +1,55 @@
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
-import sliceTextureLarge from '~/assets/slice-app-large.jpg';
-import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
-import sliceTexture from '~/assets/slice-app.jpg';
-import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
-import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
-import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
+import worksyncImg from '~/assets/worksync-ai.png';
+import flipmoImg from '~/assets/flipmo-1.png';
+import asesinoMeetImg from '~/assets/asesino-meet.png';
+import characterQuestImg from '~/assets/character-quest.png';
+import mcpServerImg from '~/assets/mcp-server.png';
+import tempifyImg from '~/assets/tempify.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { Profile } from './profile';
 import { ProjectSummary } from './project-summary';
+import { Skills } from './skills';
+import { Stats } from './stats';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
 
-// Prefetch draco decoader wasm
-export const links = () => {
-  return [
-    {
-      rel: 'prefetch',
-      href: '/draco/draco_wasm_wrapper.js',
-      as: 'script',
-      type: 'text/javascript',
-      importance: 'low',
-    },
-    {
-      rel: 'prefetch',
-      href: '/draco/draco_decoder.wasm',
-      as: 'fetch',
-      type: 'application/wasm',
-      importance: 'low',
-    },
-  ];
-};
+export const links = () => [];
 
 export const meta = () => {
   return baseMeta({
-    title: 'Designer + Developer',
-    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
+    title: 'Frontend Engineer & Creative Developer',
+    description: `Portfolio of ${config.name} — Frontend Engineer specializing in interactive UI, Three.js, Salesforce LWC, AI Agents, and modern web architectures.`,
   });
 };
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
+  const statsRef = useRef();
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
+  const projectFour = useRef();
+  const projectFive = useRef();
+  const projectSix = useRef();
+  const skillsSection = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [
+      intro,
+      statsRef,
+      projectOne,
+      projectTwo,
+      projectThree,
+      projectFour,
+      projectFive,
+      projectSix,
+      skillsSection,
+      details,
+    ];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -72,22 +65,14 @@ export const Home = () => {
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
     );
 
-    const indicatorObserver = new IntersectionObserver(
-      ([entry]) => {
-        setScrollIndicatorHidden(!entry.isIntersecting);
-      },
-      { rootMargin: '-100% 0px 0px 0px' }
-    );
-
     sections.forEach(section => {
-      sectionObserver.observe(section.current);
+      if (section.current) {
+        sectionObserver.observe(section.current);
+      }
     });
-
-    indicatorObserver.observe(intro.current);
 
     return () => {
       sectionObserver.disconnect();
-      indicatorObserver.disconnect();
     };
   }, [visibleSections]);
 
@@ -96,78 +81,159 @@ export const Home = () => {
       <Intro
         id="intro"
         sectionRef={intro}
-        scrollIndicatorHidden={scrollIndicatorHidden}
       />
+
+      {/* Key Metrics / Highlights */}
+      <Stats
+        id="stats"
+        sectionRef={statsRef}
+        visible={visibleSections.includes(statsRef.current)}
+      />
+
+      {/* Project 1: WorkSync AI */}
       <ProjectSummary
         id="project-1"
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        title="WorkSync AI: Unified Google Workspace Agent"
+        description="An AI-powered multi-agent hub allowing users to manage their entire Google Workspace (Gmail, Calendar, Drive, Docs, Sheets, Slides, Tasks) through a single conversational interface. Eliminates tab switching through an n8n orchestration layer, Google Gemini LLM API, NVIDIA Nemotron reasoning, and local SQLite synchronization."
+        techStack={[
+          'Multi-Agent AI',
+          'n8n Orchestrator',
+          'Google Gemini API',
+          'NVIDIA Nemotron',
+          'Workspace APIs',
+          'SQLite Sync',
+          'React',
+        ]}
+        buttonText="Live"
+        buttonLink="https://chat-summery-buddy.onrender.com/hikpmx7g"
+        githubLink="https://github.com/prasoon-21/chat-summery-buddy"
         model={{
-          type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
-          textures: [
-            {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
-              placeholder: sprTexturePlaceholder,
-            },
-          ],
+          type: 'custom',
+          image: worksyncImg,
+          alt: 'WorkSync AI - Workspace Agent Interface',
         }}
       />
+
+      {/* Project 2: FlipMO on Salesforce */}
       <ProjectSummary
         id="project-2"
         alternate
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
-        buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
+        title="FlipMO: Unified Commerce Platform on Salesforce"
+        description="Enterprise multi-vertical platform combining E-commerce (Flipkart-style), Travel Booking (Flights, Hotels, Buses), and Movie Ticket Booking into a single Salesforce Lightning application. Built with a 'Maximum Standard, Minimum Custom' philosophy using 7 reusable LWC components, Standard Objects, SLDS styling, and Lightning Flows for cross-vertical unified cart and checkout."
+        techStack={[
+          'Salesforce',
+          'Lightning Web Components (LWC)',
+          'Apex',
+          'Lightning Flows',
+          'SLDS Styling',
+          'Unified Cart',
+        ]}
+        buttonText="Live"
+        buttonLink="https://orgfarm-9743fa1da3-dev-ed.develop.my.site.com/flipmo/s/"
+        githubLink="https://github.com/prasoon-21/FlipMO"
         model={{
-          type: 'phone',
-          alt: 'App login screen',
-          textures: [
-            {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
-            },
-            {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
-            },
-          ],
+          type: 'custom',
+          image: flipmoImg,
+          alt: 'FlipMO Salesforce Unified Commerce Platform',
         }}
       />
+
+      {/* Project 3: Asesino Meet */}
       <ProjectSummary
         id="project-3"
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
+        title="Asesino Meet: Serverless WebRTC Video Calling"
+        description="A real-time peer-to-peer video conferencing application with instant media streaming, no central server logs, rooms management, and smooth responsive UI."
+        techStack={['React.js', 'WebRTC', 'Socket.io', 'CSS Modules']}
+        buttonText="Live"
+        buttonLink="https://asesino-meet.vercel.app/"
+        githubLink="https://github.com/prasoon-21/WebRTC"
         model={{
-          type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
+          type: 'custom',
+          image: asesinoMeetImg,
+          alt: 'Asesino Meet WebRTC Application',
         }}
       />
+
+      {/* Project 4: Character Quest */}
+      <ProjectSummary
+        id="project-4"
+        alternate
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
+        title="Character Quest: PC Game Character Encyclopedia"
+        description="A fan-crafted Game Character Encyclopedia website showcasing iconic PC game characters with detailed profiles, game-specific themes, and interactive animations."
+        techStack={['HTML5', 'CSS3', 'JavaScript', 'Responsive UI']}
+        buttonText="Live"
+        buttonLink="https://character-quest.vercel.app/"
+        githubLink="https://github.com/prasoon-21/characterQuest"
+        model={{
+          type: 'custom',
+          image: characterQuestImg,
+          alt: 'Character Quest Game Encyclopedia',
+        }}
+      />
+
+      {/* Project 5: AsesinoMCP */}
+      <ProjectSummary
+        id="project-5"
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="AsesinoMCP: Model Context Protocol Server"
+        description="Engineered a custom Model Context Protocol (MCP) server for AI assistants and Claude, eliminating manual context switching to track expenses, manage habits, and automate system tasks."
+        techStack={['Python', 'FastMCP', 'SQLite', 'Agentic AI']}
+        buttonText="Live Server"
+        buttonLink="https://AsesinoMCP.fastmcp.app"
+        githubLink="https://github.com/prasoon-21/AsesinoMCP-Server"
+        model={{
+          type: 'custom',
+          image: mcpServerImg,
+          alt: 'AsesinoMCP Server Architecture',
+        }}
+      />
+
+      {/* Project 6: Tempify */}
+      <ProjectSummary
+        id="project-6"
+        alternate
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        title="Tempify: Atmospheric Sky & Weather Forecaster"
+        description="Interactive weather platform delivering sky and atmospheric forecasts with dynamic condition rendering and OpenWeatherMap API integration."
+        techStack={['Golang', 'OpenWeatherMap API', 'HTML5', 'CSS3']}
+        buttonText="Live"
+        buttonLink="https://tempify-forecating-sky.vercel.app/"
+        githubLink="https://github.com/prasoon-21/Tempify"
+        model={{
+          type: 'custom',
+          image: tempifyImg,
+          alt: 'Tempify Weather Application',
+        }}
+      />
+
+      <Skills
+        id="skills"
+        sectionRef={skillsSection}
+        visible={visibleSections.includes(skillsSection.current)}
+      />
+
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
         id="details"
       />
+
       <Footer />
     </div>
   );
