@@ -1,0 +1,202 @@
+.aboutPage {
+  min-height: 100vh;
+  padding: 120px var(--spaceXL) var(--space4XL);
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: var(--zIndex1);
+
+  @media (--mediaMobile) {
+    padding: 100px var(--spaceM) var(--space3XL);
+  }
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spaceS);
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: var(--fontWeightMedium);
+  margin-bottom: var(--space2XL);
+  text-decoration: none;
+  transition: transform var(--durationS) ease;
+
+  &:hover {
+    transform: translateX(-4px);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space3XL);
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #a5b4fc);
+    border-radius: 2px;
+    margin: var(--spaceL) auto 0;
+  }
+}
+
+.title {
+  margin-bottom: var(--spaceS);
+}
+
+.subtitle {
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.introBox {
+  background: color-mix(in lab, var(--backgroundLight) 80%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  border-left: 5px solid var(--accent);
+  border-radius: 20px;
+  padding: var(--space2XL);
+  margin-bottom: var(--space3XL);
+  backdrop-filter: blur(16px);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--textTitle);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sectionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space2XL);
+  margin-bottom: var(--space3XL);
+}
+
+.sectionCard {
+  background: color-mix(in lab, var(--backgroundLight) 70%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 20%, transparent);
+  border-radius: 24px;
+  padding: var(--space2XL);
+  backdrop-filter: blur(16px);
+  transition: transform var(--durationM) ease, border-color var(--durationM) ease, box-shadow var(--durationM) ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 40px color-mix(in lab, var(--accent) 12%, transparent);
+  }
+
+  @media (--mediaMobile) {
+    padding: var(--spaceXL);
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spaceM);
+  margin-bottom: var(--spaceL);
+  border-bottom: 1px solid color-mix(in lab, var(--text) 10%, transparent);
+  padding-bottom: var(--spaceM);
+}
+
+.sectionIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in lab, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--textTitle);
+  margin: 0;
+}
+
+.sectionText {
+  color: var(--textLight);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: var(--spaceL);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.badgeGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spaceS);
+  margin-top: var(--spaceM);
+}
+
+.badge {
+  background: color-mix(in lab, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  color: var(--accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.skillsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spaceM);
+  list-style: none;
+  padding: 0;
+  margin: var(--spaceL) 0 0;
+
+  @media (--mediaMobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skillItem {
+  background: color-mix(in lab, var(--backgroundLight) 90%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 20%, transparent);
+  border-radius: 16px;
+  padding: var(--spaceM) var(--spaceL);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  color: var(--textLight);
+
+  strong {
+    color: var(--textTitle);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+  }
+}
+
+.calloutBox {
+  background: linear-gradient(135deg, color-mix(in lab, var(--accent) 25%, transparent) 0%, rgba(165, 180, 252, 0.15) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 24px;
+  padding: var(--space2XL);
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--textTitle);
+  font-weight: var(--fontWeightMedium);
+  box-shadow: 0 16px 40px color-mix(in lab, var(--accent) 15%, transparent);
+  margin-bottom: var(--space3XL);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spaceL);
+  justify-content: center;
+  flex-wrap: wrap;
+}
