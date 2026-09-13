@@ -1,0 +1,174 @@
+.skills {
+  padding: var(--space3XL) var(--spaceXL);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space2XL);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* Freely Moving Skills Arena (No Border / Hidden Border) */
+.arenaContainer {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  margin-bottom: var(--space3XL);
+  border-radius: 30px;
+
+  @media (--mediaTablet) {
+    height: 600px;
+  }
+
+  @media (--mediaMobile) {
+    height: 650px;
+  }
+}
+
+.floatingSkill {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  will-change: transform, left, top;
+
+  &:hover {
+    z-index: 20 !important;
+    transform: scale(1.25) !important;
+
+    .skillBubble {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px color-mix(in lab, var(--accent) 50%, transparent),
+                  0 10px 25px rgba(0, 0, 0, 0.6);
+      background: color-mix(in lab, var(--backgroundLight) 90%, transparent);
+    }
+
+    .skillTooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (--mediaMobile) {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+.skillBubble {
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: color-mix(in lab, var(--backgroundLight) 65%, transparent);
+  border: 1px solid color-mix(in lab, var(--text) 18%, transparent);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+
+  @media (--mediaMobile) {
+    width: 60px;
+    height: 60px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+}
+
+.skillImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.skillTooltip {
+  position: absolute;
+  bottom: -28px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--textTitle);
+  background: rgba(15, 12, 41, 0.92);
+  border: 1px solid color-mix(in lab, var(--accent) 40%, transparent);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0.85;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.certCard {
+  margin-top: var(--space2XL);
+  background: color-mix(in lab, var(--backgroundLight) 75%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  border-radius: 24px;
+  padding: var(--space2XL);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spaceL);
+  backdrop-filter: blur(16px);
+  transition: transform var(--durationM) ease, border-color var(--durationM) ease, box-shadow var(--durationM) ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 40px color-mix(in lab, var(--accent) 15%, transparent);
+  }
+}
+
+.certContent {
+  max-width: 650px;
+}
+
+.certBadge {
+  display: inline-block;
+  background: color-mix(in lab, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: var(--spaceS);
+}
+
+.certTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--textTitle);
+  margin-bottom: 8px;
+}
+
+.certDesc {
+  color: var(--textLight);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+
