@@ -25,9 +25,11 @@ export function ProjectSummary({
   index,
   title,
   description,
+  techStack,
   model,
   buttonText,
   buttonLink,
+  githubLink,
   alternate,
   ...rest
 }) {
@@ -86,13 +88,32 @@ export function ProjectSummary({
         >
           {title}
         </Heading>
+
+        {techStack && (
+          <div className={styles.techStack} data-visible={visible}>
+            {techStack.map(tech => (
+              <span key={tech} className={styles.techBadge}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
         <Text className={styles.description} data-visible={visible} as="p">
           {description}
         </Text>
-        <div className={styles.button} data-visible={visible}>
-          <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
-            {buttonText}
-          </Button>
+
+        <div className={styles.actions} data-visible={visible}>
+          {buttonLink && (
+            <Button iconHoverShift href={buttonLink} target="_blank" iconEnd="arrow-right">
+              {buttonText || 'Live Demo'}
+            </Button>
+          )}
+          {githubLink && (
+            <Button secondary href={githubLink} target="_blank" icon="github">
+              Source Code
+            </Button>
+          )}
         </div>
       </div>
     );
@@ -101,6 +122,12 @@ export function ProjectSummary({
   function renderPreview(visible) {
     return (
       <div className={styles.preview}>
+        {model.type === 'custom' && (
+          <div className={styles.customPreview}>
+            <img src={model.image} alt={model.alt || title} className={styles.customImage} />
+          </div>
+        )}
+
         {model.type === 'laptop' && (
           <>
             {renderKatakana('laptop', visible)}
@@ -131,6 +158,7 @@ export function ProjectSummary({
             </div>
           </>
         )}
+
         {model.type === 'phone' && (
           <>
             {renderKatakana('phone', visible)}
