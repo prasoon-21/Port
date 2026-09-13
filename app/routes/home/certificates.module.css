@@ -1,0 +1,130 @@
+.certificates {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space3XL) var(--spaceXL);
+  width: 100%;
+  position: relative;
+  z-index: var(--zIndex1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space2XL);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle {
+  color: var(--textLight);
+  font-size: 1.05rem;
+  margin-top: var(--spaceS);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spaceXL);
+
+  @media (--mediaTablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spaceL);
+  }
+
+  @media (--mediaMobile) {
+    grid-template-columns: 1fr;
+    gap: var(--spaceL);
+  }
+}
+
+.card {
+  background: color-mix(in lab, var(--backgroundLight) 75%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 25%, transparent);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(16px);
+  transition: transform var(--durationM) ease, border-color var(--durationM) ease, box-shadow var(--durationM) ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 40px color-mix(in lab, var(--accent) 18%, transparent);
+
+    .image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: color-mix(in lab, var(--backgroundLight) 90%, black);
+  position: relative;
+  border-bottom: 1px solid color-mix(in lab, var(--accent) 15%, transparent);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--durationM) ease;
+}
+
+.cardBody {
+  padding: var(--spaceL);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spaceS);
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: var(--fontWeightMedium);
+}
+
+.badge {
+  background: color-mix(in lab, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in lab, var(--accent) 30%, transparent);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.date {
+  color: var(--textLight);
+  font-size: 0.82rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--textTitle);
+  margin-bottom: var(--spaceS);
+  line-height: 1.3;
+}
+
+.description {
+  font-size: 0.92rem;
+  color: var(--textLight);
+  line-height: 1.6;
+  margin-bottom: var(--spaceL);
+  flex-grow: 1;
+}
+
+.actionButton {
+  margin-top: auto;
+}
