@@ -11,8 +11,12 @@ function isExternalLink(href) {
 }
 
 export const Button = forwardRef(({ href, ...rest }, ref) => {
-  if (isExternalLink(href) || !href) {
-    return <ButtonContent href={href} ref={ref} {...rest} />;
+  const isDownload = Boolean(rest.download);
+  const isFile = Boolean(href && /\.[a-zA-Z0-9]+$/.test(href));
+  const isExternal = isExternalLink(href);
+
+  if (isExternal || isDownload || isFile || !href) {
+    return <ButtonContent href={href} ref={ref} as="a" {...rest} />;
   }
 
   return (

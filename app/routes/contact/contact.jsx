@@ -31,18 +31,10 @@ const MAX_MESSAGE_LENGTH = 4096;
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 export async function action({ context, request }) {
-  const ses = new SESClient({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: context.cloudflare.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: context.cloudflare.env.AWS_SECRET_ACCESS_KEY,
-    },
-  });
-
   const formData = await request.formData();
-  const isBot = String(formData.get('name'));
-  const email = String(formData.get('email'));
-  const message = String(formData.get('message'));
+  const isBot = String(formData.get('name') || '');
+  const email = String(formData.get('email') || '');
+  const message = String(formData.get('message') || '');
   const errors = {};
 
   // Return without sending if a bot trips the honeypot
@@ -69,26 +61,64 @@ export async function action({ context, request }) {
     return json({ errors });
   }
 
-  // Send email via Amazon SES
-  await ses.send(
-    new SendEmailCommand({
-      Destination: {
-        ToAddresses: [context.cloudflare.env.EMAIL],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: `From: ${email}\n\n${message}`,
+  const destinationEmail = 'prasoonmishr.21@gmail.com';
+  const awsAccessKey = context?.cloudflare?.env?.AWS_ACCESS_KEY_ID;
+  const awsSecretKey = context?.cloudflare?.env?.AWS_SECRET_ACCESS_KEY;
+
+  // Send email via Amazon SES if configured, otherwise forward to FormSubmit
+  if (awsAccessKey && awsSecretKey) {
+    try {
+      const ses = new SESClient({
+        region: 'us-east-1',
+        credentials: {
+          accessKeyId: awsAccessKey,
+          secretAccessKey: awsSecretKey,
+        },
+      });
+
+      await ses.send(
+        new SendEmailCommand({
+          Destination: {
+            ToAddresses: [context?.cloudflare?.env?.EMAIL || destinationEmail],
           },
+          Message: {
+            Body: {
+              Text: {
+                Data: `From: ${email}\n\n${message}`,
+              },
+            },
+            Subject: {
+              Data: `Portfolio message from ${email}`,
+            },
+          },
+          Source: `Portfolio <${context?.cloudflare?.env?.FROM_EMAIL || destinationEmail}>`,
+          ReplyToAddresses: [email],
+        })
+      );
+    } catch (err) {
+      console.error('SES error:', err);
+    }
+  } else {
+    try {
+      await fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Referer: request.url || 'https://prasoon.dev',
         },
-        Subject: {
-          Data: `Portfolio message from ${email}`,
-        },
-      },
-      Source: `Portfolio <${context.cloudflare.env.FROM_EMAIL}>`,
-      ReplyToAddresses: [email],
-    })
-  );
+        body: JSON.stringify({
+          name: email.split('@')[0],
+          email,
+          message,
+          _subject: `Portfolio message from ${email}`,
+          _replyto: email,
+        }),
+      });
+    } catch (err) {
+      console.error('FormSubmit error:', err);
+    }
+  }
 
   return json({ success: true });
 }
