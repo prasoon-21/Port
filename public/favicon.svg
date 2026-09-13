@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
   <style>
     #favicon {
-      fill: #111;
-      @media (prefers-color-scheme: dark) {
-        fill: #fff;
-      }
+      fill: #00e5ff;
     }
   </style>
-  <path id="favicon" d="M3.03 14h7.8a7.24 7.24 0 0 1 6.34 3.74l9.25 16.78 4.87-10.86L25.97 14h7.79a7.24 7.24 0 0 1 6.34 3.74l10.59 19.2L45.28 49 32.62 26.07 22.34 49 3.04 14Zm56.41 3.4a2.4 2.4 0 0 0-2.2-3.4H48.9l6.66 12.07 3.88-8.67Z"/>
+  <g transform="translate(4, 12) scale(1.16)">
+    <path id="favicon" fill-rule="evenodd" d="M4 0h20a10 10 0 0 1 10 10c0 5.5-4.5 10-10 10H14v9H4V0Zm10 6v8h10a4 4 0 0 0 0-8H14Zm26-6h6l-6 13h-6l6-13Z"/>
+  </g>
 </svg>

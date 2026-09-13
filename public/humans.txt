@@ -1,38 +1,43 @@
-__  __  __
-\ \ \ \ \/
- \ \/\ \
-  \/  \/
+ ____  __  __ 
+|  _ \|  \/  |
+| |_) | |\/| |
+|  __/| |  | |
+|_|   |_|  |_|
 
 The humans.txt file explains the team, technology,
 and graphic assets behind this site humanstxt.org.
 
 _______________________________________________________________________________
 
-DESIGNER | デザイナー
+DEVELOPER & DESIGNER
 
-Hamish Williams
-Hand crafted design & web development
+Prasoon Mishra
+Frontend Engineer & Creative Developer
 
-Design tools:
-Figma
-Photoshop
-Blender
+Focus areas:
+Frontend Engineering (React, Vite, Remix, Three.js)
+AI Agents & MCP (FastMCP, Python)
+WebRTC Real-Time Collaboration
+DevOps & Cloud Automation (Docker, Kubernetes, Jenkins)
 
-twitter.com/hamishmw
-github.com/hamishmw
+github.com/prasoon-21
+linkedin.com/in/prasoon-mishra-04409b32b
+leetcode.com/u/prasoon_mishra_21
+hashnode.com/@pkcmishra
 
 _______________________________________________________________________________
 
-TECHNOLOGY | テクノロジー
+TECHNOLOGY
 
 React
-Remix
+Remix / Vite
 Three.js
 Framer Motion
+CSS Modules
 
 _______________________________________________________________________________
 
-FONTS | フォント
+FONTS
 
 Gotham
 IPA Gothic Regular

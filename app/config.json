@@ -1,11 +1,19 @@
 {
-  "name": "Hamish Williams",
-  "role": "Designer",
-  "disciplines": ["Developer", "Prototyper", "Animator", "Illustrator", "Modder"],
-  "url": "https://hamishw.com",
-  "bluesky": "hamishw.com",
-  "figma": "@Hamish",
-  "github": "HamishMW",
-  "repo": "https://github.com/HamishMW/portfolio",
-  "ascii": "__  __  __\n\u005C \u005C \u005C \u005C \u005C\u2215\n \u005C \u005C\u2215\u005C \u005C\n  \u005C\u2215  \u005C\u2215\n"
+  "name": "Prasoon Mishra",
+  "role": "AI Engineer",
+  "disciplines": [
+    "DevOps",
+    "Frontend",
+    "Software Engineer",
+    "Problem Solver",
+    "Fast Learner"
+  ],
+  "url": "https://github.com/prasoon-21/Port",
+  "github": "prasoon-21",
+  "linkedin": "prasoon-mishra-04409b32b",
+  "leetcode": "prasoon_mishra_21",
+  "hashnode": "pkcmishra",
+  "email": "prasoonmishr.21@gmail.com",
+  "repo": "https://github.com/prasoon-21/Port",
+  "ascii": " ____  __  __ \n|  _ \\|  \\/  |\n| |_) | |\\/| |\n|  __/| |  | |\n|_|   |_|  |_|\n"
 }

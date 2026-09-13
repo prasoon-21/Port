@@ -1,6 +1,6 @@
 {
-  "short_name": "Hamish Williams",
-  "name": "Design Portfolio of Hamish Williams",
+  "short_name": "Prasoon Mishra",
+  "name": "Frontend Portfolio of Prasoon Mishra",
   "icons": [
     {
       "src": "shortcut.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#111111",
-  "background_color": "#111111"
+  "theme_color": "#0f0c29",
+  "background_color": "#0f0c29"
 }
