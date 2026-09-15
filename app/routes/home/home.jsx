@@ -46,7 +46,7 @@ export const meta = () => {
     },
     {
       property: 'og:image',
-      content: 'https://prasoon-portfolio.pages.dev/og-image.png',
+      content: 'https://prasoon-portfolio.pages.dev/og-image.png?v=2',
     },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
