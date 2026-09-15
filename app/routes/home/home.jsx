@@ -18,10 +18,35 @@ import styles from './home.module.css';
 export const links = () => [];
 
 export const meta = () => {
-  return baseMeta({
-    title: 'Frontend Engineer & Creative Developer',
-    description: `Portfolio of ${config.name} — Frontend Engineer specializing in interactive UI, Three.js, Salesforce LWC, AI Agents, and modern web architectures.`,
-  });
+  return [
+    { title: 'Prasoon Mishra | AI Engineer & Creative Developer' },
+    {
+      name: 'description',
+      content:
+        'Portfolio of Prasoon Mishra — AI Engineer, Salesforce developer and creative developer.',
+    },
+    { property: 'og:type', content: 'website' },
+    {
+      property: 'og:title',
+      content: 'Prasoon Mishra | AI Engineer & Creative Developer',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Explore my projects in AI, Salesforce, full-stack development and creative frontend engineering.',
+    },
+    {
+      property: 'og:url',
+      content: 'https://prasoon-portfolio.pages.dev/',
+    },
+    {
+      property: 'og:image',
+      content: 'https://prasoon-portfolio.pages.dev/og-image.png',
+    },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 };
 
 export const Home = () => {
