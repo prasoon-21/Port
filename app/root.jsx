@@ -51,8 +51,13 @@ export const meta = () => [
   {
     name: 'description',
     content:
-      'Portfolio of Prasoon Mishra — AI Engineer, Salesforce developer and creative developer.',
+      'Portfolio of Prasoon Mishra — AI Engineer and Creative Developer specializing in Agentic AI, Salesforce, and modern web experiences.',
   },
+  { name: 'author', content: 'Prasoon Mishra' },
+  { property: 'article:author', content: 'Prasoon Mishra' },
+  { property: 'article:published_time', content: '2025-01-01T00:00:00.000Z' },
+  { property: 'og:site_name', content: 'Prasoon Mishra Portfolio' },
+  { property: 'og:updated_time', content: '2025-09-15T00:00:00.000Z' },
   { property: 'og:type', content: 'website' },
   {
     property: 'og:title',
@@ -61,7 +66,7 @@ export const meta = () => [
   {
     property: 'og:description',
     content:
-      'Explore my projects in AI, Salesforce, full-stack development and creative frontend engineering.',
+      'Portfolio of Prasoon Mishra — AI Engineer and Creative Developer specializing in Agentic AI, Salesforce, and modern web experiences.',
   },
   {
     property: 'og:url',
