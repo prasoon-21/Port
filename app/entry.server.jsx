@@ -1,30 +1,30 @@
 import * as ReactDOMServer from 'react-dom/server';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
-import { PassThrough } from 'node:stream';
-import { createReadableStreamFromReadable } from '@remix-run/node';
 
 const ABORT_DELAY = 5000;
 
-export default function handleRequest(
+export default async function handleRequest(
   request,
   responseStatusCode,
   responseHeaders,
   remixContext
 ) {
-  return typeof ReactDOMServer.renderToReadableStream === 'function'
-    ? handleEdgeRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext
-      )
-    : handleNodeRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext
-      );
+  if (typeof ReactDOMServer.renderToReadableStream === 'function') {
+    return handleEdgeRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext
+    );
+  } else {
+    return handleNodeRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext
+    );
+  }
 }
 
 async function handleEdgeRequest(
@@ -56,12 +56,13 @@ async function handleEdgeRequest(
   });
 }
 
-function handleNodeRequest(
+async function handleNodeRequest(
   request,
   responseStatusCode,
   responseHeaders,
   remixContext
 ) {
+  const { PassThrough, Readable } = await import('node:stream');
   const userAgent = request.headers.get('user-agent');
   const isBotUser = isbot(userAgent);
 
@@ -73,7 +74,7 @@ function handleNodeRequest(
         [isBotUser ? 'onAllReady' : 'onShellReady']() {
           shellRendered = true;
           const body = new PassThrough();
-          const stream = createReadableStreamFromReadable(body);
+          const stream = Readable.toWeb(body);
 
           responseHeaders.set('Content-Type', 'text/html');
 

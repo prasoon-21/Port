@@ -1,3 +1,7 @@
-kv_namespaces = [
-  { id = "MY_KV", binding="MY_KV" }
-]
+name = "prasoon-portfolios"
+main = "worker.js"
+compatibility_date = "2024-02-08"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./build/client"
