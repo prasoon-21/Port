@@ -16,6 +16,9 @@ const isVercel = Boolean(process.env.VERCEL);
 
 export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+  },
   build: {
     assetsInlineLimit: 1024,
   },

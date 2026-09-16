@@ -470,7 +470,7 @@ export const Earth = ({
       }
     };
 
-    if (process.env.NODE_ENV === 'development') {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') {
       currentCanvas.addEventListener('click', handleMouseUp);
     }
 

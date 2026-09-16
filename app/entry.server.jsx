@@ -1,3 +1,9 @@
+if (typeof globalThis.process === 'undefined') {
+  globalThis.process = { env: { NODE_ENV: 'production' } };
+} else if (!globalThis.process.env) {
+  globalThis.process.env = { NODE_ENV: 'production' };
+}
+
 import * as ReactDOMServer from 'react-dom/server';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
